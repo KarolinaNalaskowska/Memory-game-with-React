@@ -58,15 +58,31 @@ function randomizePosition(arr) {
 
 export default function Cards() {
     const [cards, setCards] = useState(() => randomizePosition(animalCards.concat(animalCards)));
-    console.log(cards);
+    const [] = useState("false");
     console.log(cards[0].src);
+
     const shuffleCardsOnClick = () => {
-        console.log(cards.every(card => card.answer));
-        setCards((prev) => randomizePosition(prev));
-        console.log(cards);
+        //console.log(cards.every(card => card.answer));
+        setCards(randomizePosition(animalCards.concat(animalCards)));
     }
 
     return (
-        <div><button onClick={shuffleCardsOnClick}>Shuffle</button></div>
+        <div>
+            <button onClick={shuffleCardsOnClick}>Shuffle!</button>
+            <div>
+                {cards.map((card, i) => {
+                    return (
+                        <div key={i}>
+                            <div>
+                                <img src={card.src} />
+                            </div>
+                            <div>
+                                <img src="./images/cover.png" />
+                            </div>
+                        </div>
+                    )
+                })}
+            </div>
+        </div>
     )
 }
