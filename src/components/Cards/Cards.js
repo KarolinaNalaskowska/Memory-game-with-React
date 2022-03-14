@@ -1,5 +1,7 @@
 import "./_cards.scss";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import Card from "../Card/Card";
+import {click} from "@testing-library/user-event/dist/click";
 
 const animalCards = [
     {
@@ -58,29 +60,62 @@ function randomizePosition(arr) {
 
 export default function Cards() {
     const [cards, setCards] = useState(() => randomizePosition(animalCards.concat(animalCards)));
-    const [] = useState("false");
-    console.log(cards[0].src);
+    const [clickedCards, setClickedCards] = useState([]);
+    const [guessedPairs, setGuessedPairs] = useState({});
+    const [cardAnswer, setCardAnswer] = useState(false);
 
     const shuffleCardsOnClick = () => {
-        //console.log(cards.every(card => card.answer));
         setCards(randomizePosition(animalCards.concat(animalCards)));
+    }
+
+    const comparingCards = () => {
+        const [firstClickedCard, secondClickedCard] = clickedCards;
+        console.log("Compared");
+        console.log(cards[firstClickedCard].name);
+        console.log(cards[secondClickedCard].name);
+        //console.log(cards.every(card => card.answer));
+        if (cards[firstClickedCard].name === cards[secondClickedCard].name) {
+            console.log("The same");
+            setGuessedPairs((prev) => ({ ...prev, [cards[firstClickedCard].name]: true }));
+            setClickedCards([]);
+            console.log(guessedPairs);
+
+        } else {
+            console.log("ehh");
+            setClickedCards([]);
+        }
+            return;
+    }
+
+    const handleCardClick = (indexOfClickedCard) => {
+        console.log(indexOfClickedCard);
+        setClickedCards((prev) => [...prev, indexOfClickedCard]);
+    }
+
+    useEffect(() => {
+        setTimeout(comparingCards, 1000);
+        console.log(clickedCards);
+        console.log("Wykonałem funkcję");
+    },[clickedCards]);
+
+    const isFlipped = (index) => {
+        return clickedCards.includes(index);
     }
 
     return (
         <div>
             <button onClick={shuffleCardsOnClick}>Shuffle!</button>
             <div>
-                {cards.map((card, i) => {
+                {cards.map((element, index) => {
                     return (
-                        <div key={i}>
-                            <div>
-                                <img src={card.src} />
-                            </div>
-                            <div>
-                                <img src="./images/cover.png" />
-                            </div>
-                        </div>
-                    )
+                            <Card
+                                key={index}
+                                card={element}
+                                index={index}
+                                onClick={handleCardClick}
+                                flipped={isFlipped(index)}
+                            />
+                    );
                 })}
             </div>
         </div>
