@@ -1,0 +1,21 @@
+.card {
+  box-shadow: 2px 2px 4px 4px #DEDEDE;
+  cursor: pointer;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: 0.3s;
+  width: 100%;
+
+  img {
+    height: 95%;
+    width: 95%;
+  }
+
+  .card-image {
+    backface-visibility: hidden;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+  }
+}

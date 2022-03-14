@@ -78,7 +78,6 @@ export default function Cards() {
             console.log("The same");
             setGuessedPairs((prev) => ({ ...prev, [cards[firstClickedCard].name]: true }));
             setClickedCards([]);
-            console.log(guessedPairs);
 
         } else {
             console.log("ehh");
@@ -86,7 +85,7 @@ export default function Cards() {
         }
             return;
     }
-
+    console.log(guessedPairs);
     const handleCardClick = (indexOfClickedCard) => {
         console.log(indexOfClickedCard);
         setClickedCards((prev) => [...prev, indexOfClickedCard]);
@@ -105,16 +104,16 @@ export default function Cards() {
     return (
         <div>
             <button onClick={shuffleCardsOnClick}>Shuffle!</button>
-            <div>
+            <div className="grid">
                 {cards.map((element, index) => {
                     return (
-                            <Card
-                                key={index}
-                                card={element}
-                                index={index}
-                                onClick={handleCardClick}
-                                flipped={isFlipped(index)}
-                            />
+                        <Card
+                            key={index}
+                            card={element}
+                            index={index}
+                            onClick={handleCardClick}
+                            flipped={isFlipped(index)}
+                        />
                     );
                 })}
             </div>

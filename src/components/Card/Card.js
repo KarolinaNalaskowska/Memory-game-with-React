@@ -13,11 +13,11 @@ export default function Card ({ onClick, card, index, isInactive, flipped, isDis
     }
 
     return (
-        <div className="grid card" onClick={handleClick} >
-            <div className="card__image card__image-revers">
+        <div className="card" onClick={handleClick} >
+            <div className="card-image card-image-revers">
                 <img src="images/cover.png" alt="Revers of the images" />
             </div>
-            <div className="card__image card__image-avers">
+            <div className="card-image card-image-avers">
                 <img src={card.src} alt="One of the animal" />
             </div>
         </div>
