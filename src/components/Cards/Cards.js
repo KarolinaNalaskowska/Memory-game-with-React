@@ -1,7 +1,6 @@
 import "./_cards.scss";
 import {useEffect, useState} from "react";
 import Card from "../Card/Card";
-import {click} from "@testing-library/user-event/dist/click";
 
 const animalCards = [
     {
@@ -54,24 +53,23 @@ export default function Cards() {
     const [cards, setCards] = useState(() => randomizePosition(animalCards.concat(animalCards)));
     const [clickedCards, setClickedCards] = useState([]);
     const [guessedPairs, setGuessedPairs] = useState({});
-    const [shouldDisableAllCards, setShouldDisableAllCards] = useState(false);
+    const [allCardsAreClickable, setAllCardsAreClickable] = useState(false);
 
-    const disable = () => {
-        setShouldDisableAllCards(true);
-        console.log("true");
+    const unclickable = () => {
+        setAllCardsAreClickable(true);
     };
-    const enable = () => {
-        setShouldDisableAllCards(false);
-        console.log("false");
+    const clickable = () => {
+        setAllCardsAreClickable(false);
     };
 
     const shuffleCardsOnClick = () => {
         setCards(randomizePosition(animalCards.concat(animalCards)));
     }
-
     const comparingCards = () => {
         const [firstClickedCard, secondClickedCard] = clickedCards;
-        enable();
+        clickable();
+        console.log(cards[firstClickedCard].name);
+        console.log(cards[secondClickedCard].name);
         if (cards[firstClickedCard].name === cards[secondClickedCard].name) {
             setGuessedPairs((prev) => ({ ...prev, [cards[firstClickedCard].name]: true }));
             setClickedCards([]);
@@ -79,18 +77,16 @@ export default function Cards() {
             setClickedCards([]);
         }
     }
-
     const checkingVictory = () => {
         if(animalCards.length === Object.keys(guessedPairs).length) {
             console.log("You win!");
             setGuessedPairs({});
         }
     }
-
     const handleCardClick = (indexOfClickedCard) => {
         if(clickedCards.length === 1) {
             setClickedCards((prev) => [...prev, indexOfClickedCard]);
-            disable();
+            unclickable();
         } else {
             setClickedCards([indexOfClickedCard]);
         }
@@ -100,6 +96,8 @@ export default function Cards() {
         let timeout = null;
         if(clickedCards.length === 2) {
             timeout = setTimeout(comparingCards, 100);
+            console.log("Porównuję");
+            console.log(guessedPairs);
         }
             return () => {
             clearTimeout(timeout);
@@ -129,6 +127,7 @@ export default function Cards() {
                             index={index}
                             onClick={handleCardClick}
                             flipped={isFlipped(index)}
+                            clickable={setAllCardsAreClickable}
                         />
                     );
                 })}

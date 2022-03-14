@@ -1,15 +1,11 @@
 import React from "react";
 import "./_card.scss";
 
-export default function Card ({ onClick, card, index, isInactive, flipped, isDisabled }) {
+export default function Card ({ onClick, card, index, isInactive, flipped, clickable}) {
 
     const handleClick = () => {
-        onClick(index);
-        if(flipped === true) {
-            console.log("a")
-        } else {
-            console.log("b")
-        }
+        clickable && onClick(index);
+        console.log(index);
     }
 
     return (
