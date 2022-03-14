@@ -1,4 +1,7 @@
-const cards = [
+import "./_cards.scss";
+import {useState} from "react";
+
+const animalCards = [
     {
         answer: false,
         src:"images/bear.png",
@@ -41,8 +44,29 @@ const cards = [
     }
 ]
 
+function randomizePosition(arr) {
+    const lng = arr.length;
+    for (let i = lng; i > 0; i--) {
+        const changedIndex = Math.floor(Math.random() * i);
+        const index = i - 1;
+        const temp = arr[index];
+        arr[index] = arr[changedIndex];
+        arr[changedIndex] = temp;
+    }
+    return arr;
+}
+
 export default function Cards() {
+    const [cards, setCards] = useState(() => randomizePosition(animalCards.concat(animalCards)));
+    console.log(cards);
+    console.log(cards[0].src);
+    const shuffleCardsOnClick = () => {
+        console.log(cards.every(card => card.answer));
+        setCards((prev) => randomizePosition(prev));
+        console.log(cards);
+    }
+
     return (
-        <div>Tutaj będą karty</div>
+        <div><button onClick={shuffleCardsOnClick}>Shuffle</button></div>
     )
 }
