@@ -5,42 +5,34 @@ import {click} from "@testing-library/user-event/dist/click";
 
 const animalCards = [
     {
-        answer: false,
         src:"images/bear.png",
         name: "Bear"
     },
     {
-        answer: false,
         src:"images/cheetah.png",
         name: "Cheetah"
     },
     {
-        answer: false,
         src:"images/toucan.png",
         name: "Toucan"
     },
     {
-        answer: false,
         src:"images/elephant.png",
         name: "Elephant"
     },
     {
-        answer: false,
         src:"images/giraffe.png",
         name: "Giraffe"
     },
     {
-        answer: false,
         src:"images/zebra.png",
         name: "Zebra"
     },
     {
-        answer: false,
         src:"images/panda.png",
         name: "Panda"
     },
     {
-        answer: false,
         src:"images/fawn.png",
         name: "Fawn"
     }
@@ -62,7 +54,16 @@ export default function Cards() {
     const [cards, setCards] = useState(() => randomizePosition(animalCards.concat(animalCards)));
     const [clickedCards, setClickedCards] = useState([]);
     const [guessedPairs, setGuessedPairs] = useState({});
-    const [cardAnswer, setCardAnswer] = useState(false);
+    const [shouldDisableAllCards, setShouldDisableAllCards] = useState(false);
+
+    const disable = () => {
+        setShouldDisableAllCards(true);
+        console.log("true");
+    };
+    const enable = () => {
+        setShouldDisableAllCards(false);
+        console.log("false");
+    };
 
     const shuffleCardsOnClick = () => {
         setCards(randomizePosition(animalCards.concat(animalCards)));
@@ -70,35 +71,50 @@ export default function Cards() {
 
     const comparingCards = () => {
         const [firstClickedCard, secondClickedCard] = clickedCards;
-        console.log("Compared");
-        console.log(cards[firstClickedCard].name);
-        console.log(cards[secondClickedCard].name);
-        //console.log(cards.every(card => card.answer));
+        enable();
         if (cards[firstClickedCard].name === cards[secondClickedCard].name) {
-            console.log("The same");
             setGuessedPairs((prev) => ({ ...prev, [cards[firstClickedCard].name]: true }));
             setClickedCards([]);
-
         } else {
-            console.log("ehh");
             setClickedCards([]);
         }
-            return;
     }
-    console.log(guessedPairs);
+
+    const checkingVictory = () => {
+        if(animalCards.length === Object.keys(guessedPairs).length) {
+            console.log("You win!");
+            setGuessedPairs({});
+        }
+    }
+
     const handleCardClick = (indexOfClickedCard) => {
-        console.log(indexOfClickedCard);
-        setClickedCards((prev) => [...prev, indexOfClickedCard]);
+        if(clickedCards.length === 1) {
+            setClickedCards((prev) => [...prev, indexOfClickedCard]);
+            disable();
+        } else {
+            setClickedCards([indexOfClickedCard]);
+        }
     }
 
     useEffect(() => {
-        setTimeout(comparingCards, 1000);
-        console.log(clickedCards);
-        console.log("Wykonałem funkcję");
+        let timeout = null;
+        if(clickedCards.length === 2) {
+            timeout = setTimeout(comparingCards, 100);
+        }
+            return () => {
+            clearTimeout(timeout);
+        };
     },[clickedCards]);
+
+    useEffect(() => {
+        checkingVictory();
+    }, [guessedPairs]);
 
     const isFlipped = (index) => {
         return clickedCards.includes(index);
+    }
+    const isInactive = () => {
+
     }
 
     return (
