@@ -4,16 +4,16 @@ import "./_cards.scss";
 
 const animalCards = [
     {
-        src:"images/bear.png",
-        name: "Bear"
+        src:"images/lion.png",
+        name: "Lion"
     },
     {
         src:"images/cheetah.png",
         name: "Cheetah"
     },
     {
-        src:"images/toucan.png",
-        name: "Toucan"
+        src:"images/antelope.png",
+        name: "Antelope"
     },
     {
         src:"images/elephant.png",
@@ -28,12 +28,12 @@ const animalCards = [
         name: "Zebra"
     },
     {
-        src:"images/panda.png",
-        name: "Panda"
+        src:"images/flamingo.png",
+        name: "Flamingo"
     },
     {
-        src:"images/fawn.png",
-        name: "Fawn"
+        src:"images/rhino.png",
+        name: "Rhino"
     }
 ]
 
