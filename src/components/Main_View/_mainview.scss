@@ -1,0 +1,21 @@
+.background {
+  background-image: url("background.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+}
+.title {
+  color: white;
+}
+.mainview {
+
+
+  &__container {
+
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+  }
+}
