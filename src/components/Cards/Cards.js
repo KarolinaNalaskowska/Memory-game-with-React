@@ -1,6 +1,6 @@
-import "./_cards.scss";
 import {useEffect, useState} from "react";
 import Card from "../Card/Card";
+import "./_cards.scss";
 
 const animalCards = [
     {
@@ -54,6 +54,7 @@ export default function Cards() {
     const [clickedCards, setClickedCards] = useState([]);
     const [guessedPairs, setGuessedPairs] = useState({});
     const [allCardsAreClickable, setAllCardsAreClickable] = useState(false);
+    const [moves, setMoves] = useState(0);
 
     const unclickable = () => {
         setAllCardsAreClickable(true);
@@ -61,29 +62,25 @@ export default function Cards() {
     const clickable = () => {
         setAllCardsAreClickable(false);
     };
-
-    const shuffleCardsOnClick = () => {
-        setCards(randomizePosition(animalCards.concat(animalCards)));
+    const checkingVictory = () => {
+        if(animalCards.length === Object.keys(guessedPairs).length) {
+            setMoves(0);
+            setGuessedPairs({});
+        }
     }
     const comparingCards = () => {
         const [firstClickedCard, secondClickedCard] = clickedCards;
         clickable();
-        console.log(cards[firstClickedCard].name);
-        console.log(cards[secondClickedCard].name);
         if (cards[firstClickedCard].name === cards[secondClickedCard].name) {
-            setGuessedPairs((prev) => ({ ...prev, [cards[firstClickedCard].name]: true }));
+            setGuessedPairs((prev) => ({...prev, [cards[firstClickedCard].name]: true}));
+            setMoves((prev) => prev + 1 );
             setClickedCards([]);
         } else {
-            setClickedCards([]);
-        }
-    }
-    const checkingVictory = () => {
-        if(animalCards.length === Object.keys(guessedPairs).length) {
-            console.log("You win!");
-            setGuessedPairs({});
+            setMoves((prev) => prev + 1 );
         }
     }
     const handleCardClick = (indexOfClickedCard) => {
+        console.log(indexOfClickedCard);
         if(clickedCards.length === 1) {
             setClickedCards((prev) => [...prev, indexOfClickedCard]);
             unclickable();
@@ -91,33 +88,36 @@ export default function Cards() {
             setClickedCards([indexOfClickedCard]);
         }
     }
-
     useEffect(() => {
         let timeout = null;
         if(clickedCards.length === 2) {
-            timeout = setTimeout(comparingCards, 100);
-            console.log("Porównuję");
-            console.log(guessedPairs);
+            timeout = setTimeout(comparingCards, 500);
         }
             return () => {
             clearTimeout(timeout);
         };
     },[clickedCards]);
-
     useEffect(() => {
         checkingVictory();
     }, [guessedPairs]);
-
     const isFlipped = (index) => {
         return clickedCards.includes(index);
     }
-    const isInactive = () => {
-
+    const isInactive = (card) => {
+        return Boolean(guessedPairs[card.name]);
+    }
+    const reset = () => {
+        setMoves(0);
+        setGuessedPairs({});
+        setClickedCards([]);
+        setAllCardsAreClickable(false);
+        setCards(randomizePosition(animalCards.concat(animalCards)));
     }
 
     return (
         <div>
-            <button onClick={shuffleCardsOnClick}>Shuffle!</button>
+            <button onClick={reset}>New Game!</button>
+            <p>Moves: {moves}</p>
             <div className="grid">
                 {cards.map((element, index) => {
                     return (
@@ -125,9 +125,10 @@ export default function Cards() {
                             key={index}
                             card={element}
                             index={index}
-                            onClick={handleCardClick}
+                            clickable={allCardsAreClickable}
                             flipped={isFlipped(index)}
-                            clickable={setAllCardsAreClickable}
+                            inactive={isInactive(element)}
+                            onClick={handleCardClick}
                         />
                     );
                 })}
