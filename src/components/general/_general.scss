@@ -1,0 +1,22 @@
+body {
+  background: greenyellow;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.btn {
+  background-color: green;
+  border-radius: 4px;
+  color: white;
+  padding: 20px 50px;
+  &__first {
+    position: absolute;
+  }
+}
