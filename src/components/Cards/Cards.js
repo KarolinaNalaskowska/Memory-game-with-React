@@ -55,6 +55,7 @@ export default function Cards() {
     const [guessedPairs, setGuessedPairs] = useState({});
     const [allCardsAreClickable, setAllCardsAreClickable] = useState(false);
     const [moves, setMoves] = useState(0);
+    const [recordScore, setRecordScore] = useState(0);
 
     const unclickable = () => {
         setAllCardsAreClickable(true);
@@ -64,8 +65,9 @@ export default function Cards() {
     };
     const checkingVictory = () => {
         if(animalCards.length === Object.keys(guessedPairs).length) {
-            setMoves(0);
+            setRecordScore(moves);
             setGuessedPairs({});
+            setMoves(0);
         }
     }
     const comparingCards = () => {
@@ -118,6 +120,7 @@ export default function Cards() {
         <div>
             <button onClick={reset}>New Game!</button>
             <p>Moves: {moves}</p>
+            <p>Record: {recordScore}</p>
             <div className="grid">
                 {cards.map((element, index) => {
                     return (
