@@ -4,18 +4,24 @@
   background-size: cover;
   height: 100vh;
 }
-.title {
-  color: white;
-}
 .mainview {
-
-
+  display: flex;
+  justify-content: center;
   &__container {
-
   }
 
   &__content {
     display: flex;
     flex-direction: column;
+  }
+
+  &__title {
+    color: white;
+    font-size: 3rem;
+  }
+  &__button {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
   }
 }

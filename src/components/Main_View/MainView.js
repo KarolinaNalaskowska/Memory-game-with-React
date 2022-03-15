@@ -6,12 +6,13 @@ export default function MainView() {
         <div className="background">
             <div className="mainview mainview__container container">
                 <div className="mainview__content">
-                    <h1 className="title">Welcome to my memory card game!</h1>
+                    <h1 className="mainview__title">Welcome to my memory card game!</h1>
                     <div className="mainview__button">
                         <a href="/memoapp" className="btn btn__first">Start Game</a>
                     </div>
                 </div>
             </div>
+            <button className="btn" >Rules</button>
         </div>
     )
 }

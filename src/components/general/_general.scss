@@ -16,6 +16,9 @@ a {
   border-radius: 4px;
   color: white;
   padding: 20px 50px;
+  &:hover {
+    background: rgba(140, 136, 136, 0.7);
+  }
   &__first {
     position: absolute;
   }
