@@ -17,5 +17,17 @@
     height: 100%;
     position: absolute;
     width: 100%;
+
+    &-avers {
+      transform: rotateY(180deg);
+    }
+  }
+
+  &.flipped {
+    transform: rotateY(180deg);
+  }
+
+  &.inactive {
+    visibility: hidden;
   }
 }
