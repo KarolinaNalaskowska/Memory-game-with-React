@@ -118,7 +118,7 @@ export default function Cards() {
 
     return (
         <div className="Cards">
-            <button onClick={reset}>New Game!</button>
+            <button onClick={reset} className="btn">New Game!</button>
             <div className="grid">
                 {cards.map((element, index) => {
                     return (
