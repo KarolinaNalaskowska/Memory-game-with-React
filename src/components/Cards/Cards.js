@@ -65,9 +65,9 @@ export default function Cards() {
     };
     const checkingVictory = () => {
         if(animalCards.length === Object.keys(guessedPairs).length) {
-            setRecordScore(moves);
             setGuessedPairs({});
             setMoves(0);
+            setRecordScore(moves);
         }
     }
     const comparingCards = () => {
@@ -117,10 +117,8 @@ export default function Cards() {
     }
 
     return (
-        <div>
+        <div className="Cards">
             <button onClick={reset}>New Game!</button>
-            <p>Moves: {moves}</p>
-            <p>Record: {recordScore}</p>
             <div className="grid">
                 {cards.map((element, index) => {
                     return (
@@ -136,6 +134,8 @@ export default function Cards() {
                     );
                 })}
             </div>
+            <p>Moves: {moves}</p>
+            <p>Your last score: {recordScore}</p>
         </div>
     )
 }
