@@ -1,27 +1,29 @@
-.background {
-  background-image: url("background.jpg");
-  background-position: center;
-  background-size: cover;
-  height: 100vh;
-}
 .mainview {
-  display: flex;
-  justify-content: center;
   &__container {
   }
 
   &__content {
+    align-items: center;
     display: flex;
     flex-direction: column;
+    justify-content: center;
   }
 
   &__title {
     color: white;
     font-size: 3rem;
   }
+
   &__button {
     display: flex;
-    justify-content: center;
     margin-top: 50px;
   }
+}
+
+.question {
+  color: white;
+  cursor: pointer;
+   &:hover {
+     color: #575353;
+   }
 }
