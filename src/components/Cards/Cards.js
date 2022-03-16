@@ -1,6 +1,8 @@
+import React from 'react';
 import {useEffect, useState} from "react";
-import Card from "../Card/Card";
 import "./_cards.scss";
+import Card from "../Card/Card";
+
 
 const animalCards = [
     {
@@ -66,8 +68,8 @@ export default function Cards() {
     const checkingVictory = () => {
         if(animalCards.length === Object.keys(guessedPairs).length) {
             setGuessedPairs({});
-            setMoves(0);
             setRecordScore(moves);
+            setMoves(0);
         }
     }
     const comparingCards = () => {
@@ -80,6 +82,7 @@ export default function Cards() {
         } else {
             setMoves((prev) => prev + 1 );
         }
+
     }
     const handleCardClick = (indexOfClickedCard) => {
         console.log(indexOfClickedCard);
@@ -117,9 +120,16 @@ export default function Cards() {
     }
 
     return (
-        <div className="Cards">
-            <button onClick={reset} className="btn">New Game!</button>
-            <div className="grid">
+        <div className="cards">
+            <div className="cards__container cards__content">
+                <h2 className="cards__title">Hello nickname!</h2>
+                <div className="cards__scores">
+                    <div className="movesCounter">Moves: {moves}</div>
+                    <div className="score">Your score: {recordScore}</div>
+                </div>
+            </div>
+            <div className="cover">
+                <div className="grid">
                 {cards.map((element, index) => {
                     return (
                         <Card
@@ -133,9 +143,15 @@ export default function Cards() {
                         />
                     );
                 })}
+                </div>
             </div>
-            <p>Moves: {moves}</p>
-            <p>Your last score: {recordScore}</p>
+            <div className="cards__container resetButton-container">
+                <button onClick={reset} className="btn btn__reset">reset</button>
+            </div>
+            <div className="cards__buttons">
+                <a href="/" className="btn__small">Main Page</a>
+                <a href="/bestscores" className="btn__small">Best Scores</a>
+            </div>
         </div>
     )
 }
