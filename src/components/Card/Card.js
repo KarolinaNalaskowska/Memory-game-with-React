@@ -2,11 +2,10 @@ import React from "react";
 import classnames from "classnames";
 import "./_card.scss";
 
-export default function Card ({ onClick, card, index, inactive, flipped, clickable}) {
+export default function Card ({ onClick, card, index, inactive, flipped, clickable }) {
     const handleClick = () => {
         !flipped && !clickable && onClick(index);
     }
-
     const classes = classnames(
         "card", {
         "flipped": flipped,
@@ -15,10 +14,10 @@ export default function Card ({ onClick, card, index, inactive, flipped, clickab
 
     return (
         <div className={classes} onClick={handleClick} >
-            <div className="card-image card-image-revers">
+            <div className="card-image card-image__revers">
                 <img src="images/cover.png" alt="Revers of the images" />
             </div>
-            <div className="card-image card-image-avers">
+            <div className="card-image card-image__avers">
                 <img src={card.src} alt="One of the animal" />
             </div>
         </div>

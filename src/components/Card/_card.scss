@@ -5,29 +5,24 @@
   transform-style: preserve-3d;
   transition: 0.5s;
   width: 100%;
-
   img {
     border-radius: 50%;
     box-shadow: 10px 2px 7px rgba(61, 59, 59, 0.5);
     height: 100%;
     width: 100%;
   }
-
   .card-image {
     backface-visibility: hidden;
     height: 100%;
     position: absolute;
     width: 100%;
-
-    &-avers {
+    &__avers {
       transform: rotateY(180deg);
     }
   }
-
   &.flipped {
     transform: rotateY(180deg);
   }
-
   &.inactive {
     visibility: hidden;
   }
