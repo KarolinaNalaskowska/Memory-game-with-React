@@ -52,18 +52,18 @@ function randomizePosition(arr) {
     return arr;
 }
 
-export default function Cards() {
+export default function Cards({ func }) {
     const [cards, setCards] = useState(() => randomizePosition(animalCards.concat(animalCards)));
     const [clickedCards, setClickedCards] = useState([]);
     const [guessedPairs, setGuessedPairs] = useState({});
     const [allCardsAreClickable, setAllCardsAreClickable] = useState(false);
     const [moves, setMoves] = useState(0);
     const [recordScore, setRecordScore] = useState(0);
+    func(recordScore);
     const unclickable = () => {
         setAllCardsAreClickable(true);
     };
     const handleCardClick = (indexOfClickedCard) => {
-        console.log(indexOfClickedCard);
         if(clickedCards.length === 1) {
             setClickedCards((prev) => [...prev, indexOfClickedCard]);
             unclickable();

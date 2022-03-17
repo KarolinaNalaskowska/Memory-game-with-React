@@ -2,8 +2,7 @@ import React from 'react';
 import "./_bestscores.scss";
 import { Link } from "react-router-dom";
 
-export default function BestScores({ users }) {
-    console.log(users)
+export default function BestScores({ users, recordScore }) {
     return (
         <div className="table__background">
             <div className="container table__container">
@@ -12,27 +11,33 @@ export default function BestScores({ users }) {
                 <Link to="/memoapp" className="btn btn__table">Game</Link>
             </div>
             <div className="tableCover">
-                <div>
+                <div className="tables">
+                    <table className="table table__first">
+                        <thead>
+                        <tr className="table__head">
+                            <th className="table__th">Highest score ever!</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr className="table__body">
+                            <td className="table__td">{recordScore}</td>
+                        </tr>
+                        </tbody>
+                    </table>
                 <table className="table">
                     <thead>
                     <tr className="table__head">
-                        <th className="table__th">Names</th>
-                        <th className="table__th">Scores</th>
+                        <th className="table__th">Best Gamers</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr className="table__body">
-                        <td className="table__td">Bob</td>
-                        <td className="table__td">10</td>
-                    </tr>
-                    <tr className="table__body">
-                        <td className="table__td">Julia</td>
-                        <td className="table__td">14</td>
-                    </tr>
-                    <tr className="table__body">
-                        <td className="table__td">Adam</td>
-                        <td className="table__td">17</td>
-                    </tr>
+                    {users.map((el, i) => {
+                        return (
+                            <tr key={i} className="table__body">
+                                <td className="table__td">{el}</td>
+                            </tr>
+                        );
+                    })}
                     </tbody>
                 </table>
                 </div>

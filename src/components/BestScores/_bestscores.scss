@@ -1,7 +1,10 @@
 .table {
   border: solid 1px #000;
   height: 100%;
-  width: 960px;
+  width: 430px;
+  &__first {
+    margin-right: 100px;
+  }
   &__background {
     background-image: url("../general/background.jpg");
     background-position: center;
@@ -47,4 +50,8 @@
   border-radius: 10px;
   height: 300px;
   padding: 20px;
+}
+
+.tables {
+  display: flex;
 }
