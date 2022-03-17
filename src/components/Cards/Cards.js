@@ -1,6 +1,7 @@
 import React from 'react';
 import {useEffect, useState} from "react";
 import "./_cards.scss";
+import "../../components/general/_general.scss";
 import Card from "../Card/Card";
 
 const animalCards = [
