@@ -15,7 +15,7 @@ export default function MainView({ nick, setNick, addNewUser }) {
                         <a href="/memoapp" className="btn btn__first">Start Game</a>
                         <a href="/bestscores" className="btn">Best Scores</a>
                     </div>
-                </div   
+                </div>
             </div>
         </div>
     )
