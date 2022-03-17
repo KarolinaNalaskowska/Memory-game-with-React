@@ -23,10 +23,13 @@ a {
   border-radius: 10px;
   box-shadow: 5px 5px 5px rgba(25, 25, 25, 0.5);
   color: white;
+  font-family: "Lobster", sans-serif;
+  font-size: 1.2rem;
   padding: 20px 50px;
   position: relative;
-
+  text-shadow: 2px 2px 5px rgba(100, 100, 100, 0.9);
   &:hover {
+    color: black;
     background: rgba(140, 136, 136, 0.7);
   }
   &__first {
@@ -35,7 +38,6 @@ a {
   &__reset {
     background-image: url("./background.jpg");
     background-position: center;
-    text-transform: uppercase;
     &:hover {
       background: rgba(195, 195, 195, 0.75);
       color: black;
@@ -48,6 +50,15 @@ a {
     top: -10px;
     &:hover {
       color: rgba(25, 25, 25, 0.7);
+    }
+  }
+  &__table {
+    margin-right: 20px;
+    padding: 20px;
+    text-align: center;
+    &:hover{
+      background: rgba(195, 195, 195, 0.75);
+      text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.9);
     }
   }
 }
