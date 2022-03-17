@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {useEffect, useState} from "react";
 import "./_cards.scss";
 import "../../components/general/_general.scss";
@@ -64,14 +64,14 @@ export default function Cards() {
     const clickable = () => {
         setAllCardsAreClickable(false);
     };
-    const checkingVictory = () => {
+    const checkingVictory = useCallback(() => {
         if(animalCards.length === Object.keys(guessedPairs).length) {
             setGuessedPairs({});
             setRecordScore(moves);
             setMoves(0);
         }
-    }
-    const comparingCards = () => {
+    }, [])
+    const comparingCards = useCallback(() => {
         const [firstClickedCard, secondClickedCard] = clickedCards;
         clickable();
         if (cards[firstClickedCard].name === cards[secondClickedCard].name) {
@@ -84,7 +84,7 @@ export default function Cards() {
         setTimeout(() => {
             setClickedCards([]);
         }, 200);
-    }
+    }, [])
     const handleCardClick = (indexOfClickedCard) => {
         console.log(indexOfClickedCard);
         if(clickedCards.length === 1) {
@@ -102,10 +102,10 @@ export default function Cards() {
             return () => {
             clearTimeout(timeout);
         };
-    },[clickedCards]);
+    },[clickedCards, comparingCards]);
     useEffect(() => {
         checkingVictory();
-    }, [guessedPairs]);
+    }, [guessedPairs, checkingVictory]);
     const isFlipped = (index) => {
         return clickedCards.includes(index);
     }

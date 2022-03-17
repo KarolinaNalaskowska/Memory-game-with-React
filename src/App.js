@@ -27,6 +27,7 @@ export default function App() {
         const newDoc = addDoc(ordersCollection, {
             nickname: inputValue
         });
+        console.log(newDoc);
     }
     const setNick = (e) => setInputValue(e.target.value);
 
