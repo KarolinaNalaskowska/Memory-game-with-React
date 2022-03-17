@@ -1,13 +1,15 @@
 import React from 'react';
 import "./_bestscores.scss";
+import { Link } from "react-router-dom";
 
-export default function BestScores() {
+export default function BestScores({ users }) {
+    console.log(users)
     return (
         <div className="table__background">
             <div className="container table__container">
             <div className="table__buttons">
-                <a href="/" className="btn btn__table">Main Page</a>
-                <a href="/memoapp" className="btn btn__table">Game</a>
+                <Link to="/" className="btn btn__table">Main Page</Link>
+                <Link to="/memoapp" className="btn btn__table">Game</Link>
             </div>
             <div className="tableCover">
                 <div>

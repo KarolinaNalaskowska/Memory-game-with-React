@@ -3,6 +3,7 @@ import {useEffect, useState} from "react";
 import "./_cards.scss";
 import "../../components/general/_general.scss";
 import Card from "../Card/Card";
+import { Link } from "react-router-dom";
 
 const animalCards = [
     {
@@ -146,8 +147,8 @@ export default function Cards() {
                 <button onClick={reset} className="btn btn__reset">Reset</button>
             </div>
             <div className="cards__buttons">
-                <a href="/" className="btn__small">Main Page</a>
-                <a href="/bestscores" className="btn__small">Best Scores</a>
+                <Link to="/" className="btn__small">Main Page</Link>
+                <Link to="/bestscores" className="btn__small">Best Scores</Link>
             </div>
         </div>
     )

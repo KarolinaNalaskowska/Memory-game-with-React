@@ -1,6 +1,7 @@
 import React from "react";
 import "./_rules.scss";
-import "../../components/general/_general.scss"
+import "../../components/general/_general.scss";
+import { Link } from "react-router-dom";
 
 export default function Rules () {
     return (
@@ -20,8 +21,8 @@ export default function Rules () {
             </div>
             <h2 className="rules__title">Good luck!</h2>
             <div className="rules__button">
-                <a href="/" className="btn btn__first">Back to home</a>
-                <a href="/memoapp" className="btn">Wanna play?</a>
+                <Link to="/" className="btn btn__first">Back to home</Link>
+                <Link to="/memoapp" className="btn">Wanna play?</Link>
             </div>
         </div>
     )
