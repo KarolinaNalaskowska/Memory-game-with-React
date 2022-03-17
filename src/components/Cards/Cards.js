@@ -3,7 +3,6 @@ import {useEffect, useState} from "react";
 import "./_cards.scss";
 import Card from "../Card/Card";
 
-
 const animalCards = [
     {
         src:"images/lion.png",
@@ -58,7 +57,6 @@ export default function Cards() {
     const [allCardsAreClickable, setAllCardsAreClickable] = useState(false);
     const [moves, setMoves] = useState(0);
     const [recordScore, setRecordScore] = useState(0);
-
     const unclickable = () => {
         setAllCardsAreClickable(true);
     };
@@ -82,7 +80,9 @@ export default function Cards() {
         } else {
             setMoves((prev) => prev + 1 );
         }
-
+        setTimeout(() => {
+            setClickedCards([]);
+        }, 200);
     }
     const handleCardClick = (indexOfClickedCard) => {
         console.log(indexOfClickedCard);
@@ -121,11 +121,10 @@ export default function Cards() {
 
     return (
         <div className="cards">
-            <div className="cards__container cards__content">
-                <h2 className="cards__title">Hello nickname!</h2>
+            <div className="cards__container">
                 <div className="cards__scores">
-                    <div className="movesCounter">Moves: {moves}</div>
-                    <div className="score">Your score: {recordScore}</div>
+                    <div className="score">Moves: {moves}</div>
+                    <div className="score">Your last score: {recordScore}</div>
                 </div>
             </div>
             <div className="cover">
@@ -146,7 +145,7 @@ export default function Cards() {
                 </div>
             </div>
             <div className="cards__container resetButton-container">
-                <button onClick={reset} className="btn btn__reset">reset</button>
+                <button onClick={reset} className="btn btn__reset">Reset</button>
             </div>
             <div className="cards__buttons">
                 <a href="/" className="btn__small">Main Page</a>
