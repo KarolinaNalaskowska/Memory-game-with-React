@@ -1,6 +1,6 @@
 .list {
   &__element {
-    color: black;
+    color: #000;
     font-family: "League Gothic", sans-serif;
     font-size: 2rem;
     margin: 25px 20px;
@@ -14,7 +14,7 @@
     border-radius: 10px;
   }
   &__title {
-    color: orange;
+    color: #ffa500;
     font-family: "Lobster", sans-serif;
     font-size: 2.8rem;
     text-shadow: 3px 1px 5px rgba(0, 255, 4, 0.7);
