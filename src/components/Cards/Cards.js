@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React from 'react';
 import {useEffect, useState} from "react";
 import "./_cards.scss";
 import "../../components/general/_general.scss";
@@ -61,30 +61,6 @@ export default function Cards() {
     const unclickable = () => {
         setAllCardsAreClickable(true);
     };
-    const clickable = () => {
-        setAllCardsAreClickable(false);
-    };
-    const checkingVictory = useCallback(() => {
-        if(animalCards.length === Object.keys(guessedPairs).length) {
-            setGuessedPairs({});
-            setRecordScore(moves);
-            setMoves(0);
-        }
-    }, [])
-    const comparingCards = useCallback(() => {
-        const [firstClickedCard, secondClickedCard] = clickedCards;
-        clickable();
-        if (cards[firstClickedCard].name === cards[secondClickedCard].name) {
-            setGuessedPairs((prev) => ({...prev, [cards[firstClickedCard].name]: true}));
-            setMoves((prev) => prev + 1 );
-            setClickedCards([]);
-        } else {
-            setMoves((prev) => prev + 1 );
-        }
-        setTimeout(() => {
-            setClickedCards([]);
-        }, 200);
-    }, [])
     const handleCardClick = (indexOfClickedCard) => {
         console.log(indexOfClickedCard);
         if(clickedCards.length === 1) {
@@ -95,6 +71,20 @@ export default function Cards() {
         }
     }
     useEffect(() => {
+        const comparingCards =() => {
+            const [firstClickedCard, secondClickedCard] = clickedCards;
+            setAllCardsAreClickable(false)
+            if (cards[firstClickedCard].name === cards[secondClickedCard].name) {
+                setGuessedPairs((prev) => ({...prev, [cards[firstClickedCard].name]: true}));
+                setMoves((prev) => prev + 1 );
+                setClickedCards([]);
+            } else {
+                setMoves((prev) => prev + 1 );
+            }
+            setTimeout(() => {
+                setClickedCards([]);
+            }, 200);
+        }
         let timeout = null;
         if(clickedCards.length === 2) {
             timeout = setTimeout(comparingCards, 500);
@@ -102,10 +92,17 @@ export default function Cards() {
             return () => {
             clearTimeout(timeout);
         };
-    },[clickedCards, comparingCards]);
+    },[clickedCards, cards]);
     useEffect(() => {
+        const checkingVictory = () => {
+            if(animalCards.length === Object.keys(guessedPairs).length) {
+                setGuessedPairs({});
+                setRecordScore(moves);
+                setMoves(0);
+            }
+        }
         checkingVictory();
-    }, [guessedPairs, checkingVictory]);
+    }, [guessedPairs, moves]);
     const isFlipped = (index) => {
         return clickedCards.includes(index);
     }
