@@ -1,4 +1,12 @@
 .card {
+  @media (max-width: 768px) {
+    height: 80%;
+    width: 90%;
+  }
+  @media (max-width: 650px) {
+    height: 100%;
+    width: 100%;
+  }
   cursor: pointer;
   height: 100%;
   position: relative;
@@ -6,6 +14,14 @@
   transition: 0.5s;
   width: 100%;
   img {
+    @media (max-width: 768px) {
+      height: 80%;
+      width: 90%;
+    }
+    @media (max-width: 650px) {
+      height: 80%;
+      width: 70%;
+    }
     border-radius: 50%;
     box-shadow: 10px 2px 7px rgba(61, 59, 59, 0.5);
     height: 100%;

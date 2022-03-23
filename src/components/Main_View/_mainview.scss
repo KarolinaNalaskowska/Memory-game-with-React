@@ -1,5 +1,8 @@
 .mainview {
   &__content {
+    @media (max-width: 570px) {
+      text-align: center;
+    }
     align-items: center;
     display: flex;
     flex-direction: column;

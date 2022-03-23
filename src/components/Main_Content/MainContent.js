@@ -1,10 +1,10 @@
 import "./_mainApp.scss";
 import Cards from "../Cards/Cards";
 
-export default function MainContent({ func }) {
+export default function MainContent() {
     return (
         <div className="memoapp">
-            <Cards func={func} />
+            <Cards />
         </div>
     )
 }

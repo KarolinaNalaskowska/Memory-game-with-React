@@ -12,8 +12,8 @@ export default function MainView({ nick, setNick, addNewUser }) {
                     <Link to="/rules" className="question">Do you know the rules?</Link>
                     <Form nick={nick} setNick={setNick} addNewUser={addNewUser} />
                     <div className="mainview__button">
-                        <Link to="/memoapp" className="btn btn__first">Start Game</Link>
-                        <Link to="/bestscores" className="btn">Best Scores</Link>
+                        <Link to="/memogame" className="btn btn__first">Start Game</Link>
+                        <Link to="/players" className="btn">Players</Link>
                     </div>
                 </div>
             </div>

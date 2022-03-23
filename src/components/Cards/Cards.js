@@ -52,14 +52,13 @@ function randomizePosition(arr) {
     return arr;
 }
 
-export default function Cards({ func }) {
+export default function Cards() {
     const [cards, setCards] = useState(() => randomizePosition(animalCards.concat(animalCards)));
     const [clickedCards, setClickedCards] = useState([]);
     const [guessedPairs, setGuessedPairs] = useState({});
     const [allCardsAreClickable, setAllCardsAreClickable] = useState(false);
     const [moves, setMoves] = useState(0);
     const [recordScore, setRecordScore] = useState(0);
-    func(recordScore);
     const unclickable = () => {
         setAllCardsAreClickable(true);
     };
@@ -72,7 +71,7 @@ export default function Cards({ func }) {
         }
     }
     useEffect(() => {
-        const comparingCards =() => {
+        const comparingCards = () => {
             const [firstClickedCard, secondClickedCard] = clickedCards;
             setAllCardsAreClickable(false)
             if (cards[firstClickedCard].name === cards[secondClickedCard].name) {
@@ -97,8 +96,15 @@ export default function Cards({ func }) {
     useEffect(() => {
         const checkingVictory = () => {
             if(animalCards.length === Object.keys(guessedPairs).length) {
+                setMoves((prev) => prev + 1 );
                 setGuessedPairs({});
-                setRecordScore(moves);
+                setRecordScore(prevState => {
+                    if(prevState === 0 || prevState > moves) {
+                        setRecordScore(moves);
+                    } else {
+                        setRecordScore(prevState);
+                    }
+                });
                 setMoves(0);
             }
         }
@@ -123,7 +129,7 @@ export default function Cards({ func }) {
             <div className="cards__container">
                 <div className="cards__scores">
                     <div className="score">Moves: {moves}</div>
-                    <div className="score">Your last score: {recordScore}</div>
+                    <div className="score">Your best score: {recordScore}</div>
                 </div>
             </div>
             <div className="cover">
@@ -148,7 +154,7 @@ export default function Cards({ func }) {
             </div>
             <div className="cards__buttons">
                 <Link to="/" className="btn__small">Main Page</Link>
-                <Link to="/bestscores" className="btn__small">Best Scores</Link>
+                <Link to="/players" className="btn__small">Players</Link>
             </div>
         </div>
     )

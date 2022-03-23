@@ -4,7 +4,7 @@ import "./_form.scss";
 export default function Form ({ nick, setNick, addNewUser }) {
     return (
         <div className="form__container">
-            <p className="form-text">Leave your nickname here:</p>
+            <p className="form-text">Enter your name on the player board:</p>
             <form className="form">
                 <input
                     className="form__input"

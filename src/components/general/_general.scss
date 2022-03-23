@@ -19,6 +19,13 @@ a {
 }
 
 .btn {
+  @media (max-width: 480px) {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    width: 100%;
+}
   background-color: #008000;
   border-radius: 10px;
   box-shadow: 5px 5px 5px rgba(25, 25, 25, 0.5);
@@ -27,17 +34,38 @@ a {
   font-size: 1.2rem;
   padding: 20px 50px;
   position: relative;
+  text-align: center;
   text-shadow: 2px 2px 5px rgba(100, 100, 100, 0.9);
+  width: 90px;
   &:hover {
     color: #000;
     background: rgba(140, 136, 136, 0.7);
+  }
+  &__media {
+    @media (max-width: 1024px) {
+      font-size: 1rem;
+      padding: 20px 40px;
+    }
+    @media (max-width: 480px) {
+      width: 90%;
+    }
+    @media (max-width: 320px) {
+      font-size: 0.8rem;
+      padding: 5px 5px;
+    }
   }
   &__first {
     margin-right: 100px;
   }
   &__reset {
+    @media (max-width: 900px) {
+      display: flex;
+      justify-content: center;
+      width: 100px;
+    }
     background-image: url("./background.jpg");
     background-position: center;
+    width: 15%;
     &:hover {
       background: rgba(195, 195, 195, 0.75);
       color: #000;
@@ -53,6 +81,11 @@ a {
     }
   }
   &__table {
+    @media (max-width: 520px) {
+      font-size: 1rem;
+      padding: 10px;
+      width: 20%;
+    }
     margin-right: 20px;
     padding: 20px;
     text-align: center;

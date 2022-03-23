@@ -8,6 +8,9 @@
 .form {
   display: flex;
   &__input {
+    @media (max-width: 365px) {
+      width: 100%;
+    }
     box-shadow: 5px 2px 5px rgba(250, 250, 250, 0.7);
     padding: 5px;
     width: 300px;
